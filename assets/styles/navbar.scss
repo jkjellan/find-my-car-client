@@ -1,0 +1,17 @@
+// sets background color and padding for navbar
+nav.my-navbar.navbar {
+  border-radius: 0;
+  background: $background-dark;
+  padding-right: 8px;
+  padding-left: 8px;
+  margin: 0;
+  position: fixed;
+  // z-index: 1;
+}
+
+// Styling for how Nozama name is displayed
+.my-company-name {
+  color: $white;
+  font-size: 20px;
+  line-height: 55px;
+}

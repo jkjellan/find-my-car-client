@@ -1,16 +1,232 @@
 'use strict'
 
 const initializeMapWithGeo = function (position) {
+
+  const styledMapType = new google.maps.StyledMapType(
+    [
+    {
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#212121"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.icon",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#212121"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.country",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9e9e9e"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.land_parcel",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.locality",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#bdbdbd"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          // "color": "#181818"
+          "color": "#376333"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#1b1b1b"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry.fill",
+      "stylers": [
+        {
+          // "color": "#2c2c2c"
+          "color": "#cccccc"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          // "color": "#8a8a8a"
+          "color": "#ffffff"
+        }
+      ]
+    },
+    {
+      "featureType": "road.arterial",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          // "color": "#373737"
+          "color": "#727272"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          // "color": "#3c3c3c"
+          "color": "#3d3d3d"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway.controlled_access",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          // "color": "#4e4e4e"
+          "color": "#3d3d3d"
+        }
+      ]
+    },
+    {
+      "featureType": "road.local",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#ffffff"
+          // "color": "#616161"
+        }
+      ]
+    },
+    {
+      "featureType": "transit",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          // "color": "#757575"
+          "color": "#fffff"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          // "color": "#000000"
+          "color": "#242d3f"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#3d3d3d"
+        }
+      ]
+    }
+  ],
+  {name: 'Black & White'})
+
   console.log('initializeMapWithGeo, position is', position)
   const latLng = {lat: position.coords.latitude, lng: position.coords.longitude}
-  const map = new google.maps.Map(document.getElementById('map'), {zoom: 17, center: latLng})
+  const map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 17,
+    center: latLng,
+    mapTypeControlOptions: {
+      mapTypesIds: ['roadmap', 'styled_map']
+    }
+  })
+
+  //Associate the styled map with the MapTypeId and set it to display.
+  map.mapTypes.set('styled_map', styledMapType)
+  map.setMapTypeId('styled_map')
+
   return map
 }
 
 const initializeMapNoGeo = function () {
   console.log('initializeMapNoGeo Ran')
   let latLng = {lat: 42.3601, lng: 71.0589}
-  const map = new google.maps.Map(document.getElementById('map'), {zoom: 17, center: latLng})
+  const map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 17,
+    center: latLng,
+    mapTypeControlOptions: {
+      mapTypesIds: ['styled_map', 'black_&_white']
+    }
+  })
   return map
 }
 

@@ -1,11 +1,14 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+@import 'colors';
+@import 'navbar';
+@import 'icons';
+
 .map {
   height: 100%;
   margin: 0%;
   width: 100%;
-  position: absolute;
 }
 
 .show-lat-lng {
@@ -21,7 +24,7 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
   width: 100%;
   text-align: center;
   position: absolute;
-  z-index: 1;
+  // z-index: 1;
   color: white;
   background: rgba(0,0,0,.7);
 }
