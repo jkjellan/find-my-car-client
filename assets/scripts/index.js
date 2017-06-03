@@ -3,7 +3,7 @@
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 // const GoogleMapsLoader = require('google-maps')
-const apiEvents = require('./api/events.js')
+const apiEvents = require('./map/events.js')
 const authEvents = require('./auth/events.js')
 
 $(() => {

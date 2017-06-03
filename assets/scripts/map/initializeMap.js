@@ -1,7 +1,6 @@
 'use strict'
 
-const initializeMapWithGeo = function (position) {
-
+const styleMap = function () {
   const styledMapType = new google.maps.StyledMapType(
     [
     {
@@ -200,6 +199,11 @@ const initializeMapWithGeo = function (position) {
   ],
   {name: 'Black & White'})
 
+  return styledMapType
+}
+
+const initializeMapWithGeo = function (position, styledMapType) {
+
   console.log('initializeMapWithGeo, position is', position)
   const latLng = {lat: position.coords.latitude, lng: position.coords.longitude}
   const map = new google.maps.Map(document.getElementById('map'), {
@@ -217,9 +221,9 @@ const initializeMapWithGeo = function (position) {
   return map
 }
 
-const initializeMapNoGeo = function () {
+const initializeMapNoGeo = function (styledMapType) {
   console.log('initializeMapNoGeo Ran')
-  let latLng = {lat: 42.3601, lng: 71.0589}
+  const latLng = {lat: 42.3601, lng: 71.0589}
   const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 17,
     center: latLng,
@@ -227,6 +231,10 @@ const initializeMapNoGeo = function () {
       mapTypesIds: ['styled_map', 'black_&_white']
     }
   })
+  // Associate the styled map with the MapTypeId and set it to display.
+  map.mapTypes.set('styled_map', styledMapType)
+  map.setMapTypeId('styled_map')
+
   return map
 }
 
@@ -245,10 +253,9 @@ const placeMarker = function (position, map) {
 
 const attachMarkerHandlers = function (marker) {
   google.maps.event.addListener(marker, 'dragend', function (e) {
-  console.log('dragging ended')
-  document.getElementById('current').innerHTML =
-  '<p>Marker dropped: Current Lat: ' + e.latLng.lat().toFixed(3) +
-  ' Current Lng: ' + e.latLng.lng().toFixed(3) + '</p>'
+    console.log('dragging ended')
+    console.log('latitiude is', e.latLng.lat())
+    console.log('longitude is', e.latLng.lng())
   })
 
   // google.maps.event.addListener(marker, 'dragstart', function (e) {
@@ -342,5 +349,6 @@ module.exports = {
   // geoLocation,
   getCurrentLocation,
   displayInfoWindow,
-  handleLocationError
+  handleLocationError,
+  styleMap
 }
