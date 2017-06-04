@@ -28,23 +28,10 @@ const ParkCar = function (controlDiv, map) {
   controlText.innerHTML = 'Park Now!'
   controlUI.appendChild(controlText)
 
-  // Setup the click event listeners: simply set the map to Chicago.
+  // Setup the click event listener
   controlUI.addEventListener('click', function () {
-    console.log('can use this click handler to make ajax request')
-    console.log(store.parkingSpot.getPosition().lat())
-    const data = {
-      parking_spot: {
-        latitude: store.parkingSpot.getPosition().lat(),
-        longitude: store.parkingSpot.getPosition().lng(),
-        note: 'This is a test note'
-      }
-    }
-
-    mapApi.newParkingSpot(data)
-      .then(mapUi.newParkingSpotSuccess)
-      .catch(mapUi.newParkingSpotFailure)
+    console.log('Not using this custom control anymore. Probably will reuse later for centering map, etc.')
   })
-
 }
 
 module.exports = {

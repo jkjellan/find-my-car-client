@@ -1,39 +1,32 @@
 'use strict'
-const initializeMap = require('./initializeMap.js')
-const customControls = require('./customControls.js')
+const getFormFields = require(`../../../lib/get-form-fields`)
+
 const store = require('../store')
+const mapApi = require('./api')
+const mapUi = require('./ui')
 
-const GoogleMapsLoader = require('google-maps')
-GoogleMapsLoader.KEY = 'AIzaSyAn8apKE6WE0ImeKZa8IU-DSccVBRFKTuM'
-GoogleMapsLoader.LIBRARIES = ['geometry', 'places']
+const onNewParkingSpot = function () {
+  event.preventDefault()
+  const note = getFormFields(this).parking_spot.note
+  console.log('parking form data is', note)
+  const data = {
+    parking_spot: {
+      latitude: store.parkingSpot.getPosition().lat(),
+      longitude: store.parkingSpot.getPosition().lng(),
+      note: note
+    }
+  }
 
-const mapApiCall = function () {
-  GoogleMapsLoader.load(function (google) {
-    console.log('empty starting')
+  mapApi.newParkingSpot(data)
+    .then(mapUi.newParkingSpotSuccess)
+    .catch(mapUi.newParkingSpotFailure)
+}
 
-    initializeMap.getCurrentLocation()
-      .then(function (position) {
-        console.log(position.coords)
-        const mapStyle = initializeMap.styleMap()
-        const map = initializeMap.initializeMapWithGeo(position, mapStyle)
-        const marker = initializeMap.placeMarker(position, map)
-        store.parkingSpot = marker
-        console.log('marker is lat, lng', marker.getPosition().lat(), marker.getPosition().lng())
-        initializeMap.attachMarkerHandlers(marker)
-        // initializeMap.loadMapOverlays(map)
-        const parkingDiv = document.createElement('div')
-        const parkCar = new customControls.ParkCar(parkingDiv, map)
-        parkingDiv.index = 1
-        map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(parkingDiv)
-      })
-      .catch(function (err) {
-        console.error('Position Error ', err.message)
-        const mapStyle = initializeMap.styleMap()
-        initializeMap.initializeMapNoGeo(mapStyle)
-      })
-  })
+const addHandlers = () => {
+  $('#parking-spot').on('submit', onNewParkingSpot)
 }
 
 module.exports = {
-  mapApiCall
+  onNewParkingSpot,
+  addHandlers
 }

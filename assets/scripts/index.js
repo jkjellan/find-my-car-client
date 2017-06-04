@@ -3,13 +3,15 @@
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 // const GoogleMapsLoader = require('google-maps')
-const apiEvents = require('./map/events.js')
+const mapOnLoad = require('./map/onLoad.js')
 const authEvents = require('./auth/events.js')
+const mapEvents = require('./map/events.js')
 
 $(() => {
   setAPIOrigin(location, config)
-  apiEvents.mapApiCall()
+  mapOnLoad.mapApiCall()
   authEvents.addHandlers()
+  mapEvents.addHandlers()
 })
 
 $(() => {

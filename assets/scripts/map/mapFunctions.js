@@ -258,6 +258,10 @@ const attachMarkerHandlers = function (marker) {
     console.log('longitude is', e.latLng.lng())
   })
 
+  google.maps.event.addListener(marker, 'click', function (e) {
+    console.log('clicked marker')
+    $('#myParkingModal').modal('toggle')
+  })
   // google.maps.event.addListener(marker, 'dragstart', function (e) {
   // console.log('dragging ended')
   // document.getElementById('current').innerHTML =
