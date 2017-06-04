@@ -23,7 +23,13 @@ const getParkingSpotsSuccess = (ajaxResponse) => {
   const latitude = ajaxResponse.parking_spots[length - 1].latitude
   const longitude = ajaxResponse.parking_spots[length - 1].longitude
   const latLng = {lat: latitude, lng: longitude}
-  mapFunctions.placeMarker(latLng, store.map)
+  const icon = {
+    url: "http://i.imgur.com/0FSgG7o.png", // url
+    scaledSize: new google.maps.Size(30, 30), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(15, 25) // anchor
+}
+  mapFunctions.placeMarker(latLng, store.map, icon, false)
 }
 
 const getParkingSpotsFailure = () => {

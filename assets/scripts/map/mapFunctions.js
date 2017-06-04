@@ -238,7 +238,7 @@ const initializeMapNoGeo = function (styledMapType) {
   return map
 }
 
-const placeMarker = function (position, map) {
+const placeMarker = function (position, map, icon, dragBool) {
   let latLng
   // if I passed in a google marker object (as I do onLoad), then extract lat and lng differently
   if (position.coords) {
@@ -248,23 +248,9 @@ const placeMarker = function (position, map) {
     latLng = position
   }
 
-  const iconBase = 'https://maps.google.com/mapfiles/kml/shapes/'
-  const icon = '../../assets/img/quote-left.svg'
-
-  var image = {
-  url: 'http://i.imgur.com/YMvlT5n.png',
-  // This marker is 20 pixels wide by 32 pixels high.
-  size: new google.maps.Size(32, 32),
-  // The origin for this image is (0, 0).
-  origin: new google.maps.Point(0, 0),
-  // The anchor for this image is the base of the flagpole at (0, 32).
-  anchor: new google.maps.Point(0, 32)
-}
-
-
   const marker = new google.maps.Marker({
     position: latLng,
-    draggable: true,
+    draggable: dragBool,
     title: 'Last parking spot',
     icon: icon
     // animation: google.maps.Animation.BOUNCE

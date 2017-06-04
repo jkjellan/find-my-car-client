@@ -21,7 +21,14 @@ const mapApiCall = function () {
         const map = mapFunctions.initializeMapWithGeo(position, mapStyle)
         // console.log('after initializeMapWithGeo in onLoad.js')
         store.map = map
-        const userIcon = mapFunctions.placeMarker(position, map)
+
+        const icon = {
+          url: "http://i.imgur.com/Nj5iTmx.png", // url
+          scaledSize: new google.maps.Size(50, 50), // scaled size
+          origin: new google.maps.Point(0, 0), // origin
+          anchor: new google.maps.Point(25, 45) // anchor
+        }
+        const userIcon = mapFunctions.placeMarker(position, map, icon, true)
         store.userIcon = userIcon
         // console.log('marker is lat, lng', userIcon.getPosition().lat(), userIcon.getPosition().lng())
         mapFunctions.attachMarkerHandlers(userIcon)
