@@ -23,7 +23,7 @@ const mapApiCall = function () {
         store.map = map
 
         const icon = {
-          url: "http://i.imgur.com/Nj5iTmx.png", // url
+          url: "https://i.imgur.com/Nj5iTmx.png", // url
           scaledSize: new google.maps.Size(50, 50), // scaled size
           origin: new google.maps.Point(0, 0), // origin
           anchor: new google.maps.Point(25, 45) // anchor
