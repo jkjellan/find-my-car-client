@@ -239,8 +239,14 @@ const initializeMapNoGeo = function (styledMapType) {
 }
 
 const placeMarker = function (position, map) {
-  console.log('about to place a marker to position, map', position, map)
-  const latLng = {lat: position.coords.latitude, lng: position.coords.longitude}
+  let latLng
+  if (position.coords) {
+    console.log('about to place a marker to position, map', position, map)
+    latLng = {lat: position.coords.latitude, lng: position.coords.longitude}
+  } else {
+    latLng = position
+  }
+
   const marker = new google.maps.Marker({
     position: latLng,
     draggable: true,

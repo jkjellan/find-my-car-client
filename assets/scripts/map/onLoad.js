@@ -16,6 +16,7 @@ const mapApiCall = function () {
         console.log(position.coords)
         const mapStyle = mapFunctions.styleMap()
         const map = mapFunctions.initializeMapWithGeo(position, mapStyle)
+        store.map = map
         const marker = mapFunctions.placeMarker(position, map)
         store.parkingSpot = marker
         console.log('marker is lat, lng', marker.getPosition().lat(), marker.getPosition().lng())
