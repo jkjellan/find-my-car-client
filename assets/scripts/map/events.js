@@ -11,8 +11,8 @@ const onNewParkingSpot = function () {
   console.log('getting here? parking form data is', note)
   const data = {
     parking_spot: {
-      latitude: store.parkingSpot.getPosition().lat(),
-      longitude: store.parkingSpot.getPosition().lng(),
+      latitude: store.userIcon.getPosition().lat(),
+      longitude: store.userIcon.getPosition().lng(),
       note: note
     }
   }

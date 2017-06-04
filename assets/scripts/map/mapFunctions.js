@@ -198,7 +198,7 @@ const styleMap = function () {
     }
   ],
   {name: 'Black & White'})
-
+  console.log('in styleMap in mapFunctions.js')
   return styledMapType
 }
 
@@ -217,7 +217,7 @@ const initializeMapWithGeo = function (position, styledMapType) {
   //Associate the styled map with the MapTypeId and set it to display.
   map.mapTypes.set('styled_map', styledMapType)
   map.setMapTypeId('styled_map')
-
+  console.log('in initializeMapWithGeo')
   return map
 }
 
@@ -240,6 +240,7 @@ const initializeMapNoGeo = function (styledMapType) {
 
 const placeMarker = function (position, map) {
   let latLng
+  // if I passed in a google marker object (as I do onLoad), then extract lat and lng differently
   if (position.coords) {
     console.log('about to place a marker to position, map', position, map)
     latLng = {lat: position.coords.latitude, lng: position.coords.longitude}
@@ -247,10 +248,25 @@ const placeMarker = function (position, map) {
     latLng = position
   }
 
+  const iconBase = 'https://maps.google.com/mapfiles/kml/shapes/'
+  const icon = '../../assets/img/quote-left.svg'
+
+  var image = {
+  url: 'http://i.imgur.com/YMvlT5n.png',
+  // This marker is 20 pixels wide by 32 pixels high.
+  size: new google.maps.Size(32, 32),
+  // The origin for this image is (0, 0).
+  origin: new google.maps.Point(0, 0),
+  // The anchor for this image is the base of the flagpole at (0, 32).
+  anchor: new google.maps.Point(0, 32)
+}
+
+
   const marker = new google.maps.Marker({
     position: latLng,
     draggable: true,
-    title: 'Last parking spot'
+    title: 'Last parking spot',
+    icon: icon
     // animation: google.maps.Animation.BOUNCE
   })
   marker.setMap(map)
