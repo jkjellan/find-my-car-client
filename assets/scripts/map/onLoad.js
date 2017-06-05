@@ -2,6 +2,7 @@
 const mapFunctions = require('./mapFunctions.js')
 const customControls = require('./customControls.js')
 const store = require('../store')
+const icons = require('./icons')
 
 const GoogleMapsLoader = require('google-maps')
 GoogleMapsLoader.KEY = 'AIzaSyAn8apKE6WE0ImeKZa8IU-DSccVBRFKTuM'
@@ -22,12 +23,8 @@ const mapApiCall = function () {
         // console.log('after initializeMapWithGeo in onLoad.js')
         store.map = map
 
-        const icon = {
-          url: "https://i.imgur.com/Nj5iTmx.png", // url
-          scaledSize: new google.maps.Size(50, 50), // scaled size
-          origin: new google.maps.Point(0, 0), // origin
-          anchor: new google.maps.Point(25, 45) // anchor
-        }
+        const icon = icons.userIcon()
+
         const userIcon = mapFunctions.placeMarker(position, map, icon, true)
         store.userIcon = userIcon
         // console.log('marker is lat, lng', userIcon.getPosition().lat(), userIcon.getPosition().lng())

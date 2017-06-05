@@ -1,5 +1,7 @@
 'use strict'
 const store = require('../store')
+const render = require('./render')
+// const mapEvents = require('./events')
 
 const newParkingSpotSuccess = (ajaxResponse) => {
   const mapEvents = require('./events')
@@ -15,30 +17,29 @@ const newParkingSpotFailure = () => {
 }
 
 const getParkingSpotsSuccess = (ajaxResponse) => {
-  const mapFunctions = require('./mapFunctions')
-  console.log('get parking spots success:', ajaxResponse)
-  const length = ajaxResponse.parking_spots.length
-  console.log('length is', length)
-  console.log(ajaxResponse.parking_spots[length - 1].latitude)
-  const latitude = ajaxResponse.parking_spots[length - 1].latitude
-  const longitude = ajaxResponse.parking_spots[length - 1].longitude
-  const latLng = {lat: latitude, lng: longitude}
-  const icon = {
-    url: "https://i.imgur.com/0FSgG7o.png", // url
-    scaledSize: new google.maps.Size(30, 30), // scaled size
-    origin: new google.maps.Point(0,0), // origin
-    anchor: new google.maps.Point(15, 25) // anchor
-}
-  mapFunctions.placeMarker(latLng, store.map, icon, false)
+  render.renderPastParkingLocations(ajaxResponse)
+  render.renderCurrentParkingLocation(ajaxResponse)
 }
 
 const getParkingSpotsFailure = () => {
   console.log('getParkingSpotsFailure')
 }
 
+const getParkingSpotSuccess = (ajaxResponse) => {
+  const mapEvents = require('./events')
+  console.log('getParkingSpotSuccess', ajaxResponse)
+  mapEvents.onGetParkingSpots()
+}
+
+const getParkingSpotFailure = () => {
+  console.log('getParkingSpotFailure')
+}
+
 module.exports = {
   newParkingSpotSuccess,
   newParkingSpotFailure,
   getParkingSpotsSuccess,
-  getParkingSpotsFailure
+  getParkingSpotsFailure,
+  getParkingSpotSuccess,
+  getParkingSpotFailure
 }

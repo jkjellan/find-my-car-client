@@ -15,6 +15,16 @@ const newParkingSpot = (data) => {
   })
 }
 
+const getParkingSpot = () => {
+  return $.ajax({
+    url: config.apiOrigin + '/parking_spots/' + store.parking_spot.id,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 const getParkingSpots = () => {
   return $.ajax({
     url: config.apiOrigin + '/parking_spots',
@@ -27,5 +37,6 @@ const getParkingSpots = () => {
 
 module.exports = {
   newParkingSpot,
+  getParkingSpot,
   getParkingSpots
 }

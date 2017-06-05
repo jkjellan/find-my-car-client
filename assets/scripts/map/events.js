@@ -31,11 +31,18 @@ const onGetParkingSpots = function () {
     .catch(mapUi.getParkingSpotsFailure)
 }
 
+const onGetParkingSpot = function () {
+  mapApi.getParkingSpot()
+    .then(mapUi.getParkingSpotSuccess)
+    .catch(mapUi.getParkingSpotFailure)
+}
+
 const addHandlers = () => {
   $('#parking-spot').on('submit', onNewParkingSpot)
 }
 
 module.exports = {
   onGetParkingSpots,
+  onGetParkingSpot,
   addHandlers
 }

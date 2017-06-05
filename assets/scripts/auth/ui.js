@@ -2,12 +2,12 @@
 
 const store = require('../store')
 const menu = require('./menu')
+const mapEvents = require('../map/events')
 
 const signUpSuccess = (ajaxResponse) => {
   // console.log('sign up Success')
   console.log('sign-up success, user:', ajaxResponse.user)
   menu.signUpSuccess()
-
 }
 
 const signUpFailure = (error) => {
@@ -20,6 +20,7 @@ const signInSuccess = (ajaxResponse) => {
   console.log('sign in success', ajaxResponse.user)
   store.user = ajaxResponse.user
   menu.signInSuccess()
+  mapEvents.onGetParkingSpots()
 }
 
 const signInFailure = (error) => {
