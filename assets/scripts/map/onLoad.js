@@ -1,8 +1,8 @@
 'use strict'
 const mapFunctions = require('./mapFunctions.js')
-const customControls = require('./customControls.js')
 const store = require('../store')
 const icons = require('./icons')
+const style = require('./mapStyles')
 
 const GoogleMapsLoader = require('google-maps')
 GoogleMapsLoader.KEY = 'AIzaSyAn8apKE6WE0ImeKZa8IU-DSccVBRFKTuM'
@@ -14,7 +14,7 @@ const mapApiCall = function () {
 
     mapFunctions.getCurrentLocation()
       .then(function (position) {
-        const mapStyle = mapFunctions.styleMap()
+        const mapStyle = style.styleMap()
         const map = mapFunctions.initializeMapWithGeo(position, mapStyle)
         store.map = map
         const icon = icons.userIcon()
@@ -24,7 +24,7 @@ const mapApiCall = function () {
       })
       .catch(function (err) {
         console.error('Position Error ', err.message)
-        const mapStyle = mapFunctions.styleMap()
+        const mapStyle = style.styleMap()
         const map = mapFunctions.initializeMapNoGeo(mapStyle)
         store.map = map
         const icon = icons.userIcon()
