@@ -3,6 +3,7 @@ const mapFunctions = require('./mapFunctions.js')
 const store = require('../store')
 const icons = require('./icons')
 const style = require('./mapStyles')
+// const iconHandlers = require('./iconHandlers')
 
 const GoogleMapsLoader = require('google-maps')
 GoogleMapsLoader.KEY = 'AIzaSyAn8apKE6WE0ImeKZa8IU-DSccVBRFKTuM'
@@ -20,7 +21,7 @@ const mapApiCall = function () {
         const icon = icons.userIcon()
         const userIcon = mapFunctions.placeMarker(position, map, icon, true)
         store.userIcon = userIcon
-        mapFunctions.attachMarkerHandlers(userIcon)
+        // iconHandlers.attachMarkerHandlers(userIcon)
       })
       .catch(function (err) {
         console.error('Position Error ', err.message)
@@ -30,7 +31,7 @@ const mapApiCall = function () {
         const icon = icons.userIcon()
         const userIcon = mapFunctions.placeMarker({lat: 42.3601, lng: -71.0589}, map, icon, true)
         store.userIcon = userIcon
-        mapFunctions.attachMarkerHandlers(userIcon)
+        // iconHandlers.attachMarkerHandlers(userIcon)
       })
   })
 }

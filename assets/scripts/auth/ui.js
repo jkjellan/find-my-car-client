@@ -4,6 +4,7 @@ const store = require('../store')
 const menu = require('./menu')
 const mapEvents = require('../map/events')
 const remove = require('../map/remove')
+const iconHandlers = require('../map/iconHandlers')
 
 const signUpSuccess = (ajaxResponse) => {
   // console.log('sign up Success')
@@ -22,6 +23,7 @@ const signInSuccess = (ajaxResponse) => {
   store.user = ajaxResponse.user
   menu.signInSuccess()
   mapEvents.onGetParkingSpots()
+  iconHandlers.attachMarkerHandlers(store.userIcon)
 }
 
 const signInFailure = (error) => {
@@ -38,6 +40,8 @@ const signOutSuccess = () => {
   menu.signOutSuccess()
   remove.removeCurrentCarIcon()
   remove.removePastCarIcons()
+  store.userIconDragListener.remove()
+  store.userIconClickListener.remove()
 }
 
 const signOutFailure = (error) => {

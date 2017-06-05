@@ -11,7 +11,7 @@ const initializeMapWithGeo = function (position, styledMapType) {
     }
   })
 
-  //Associate the styled map with the MapTypeId and set it to display.
+  // Associate the styled map with the MapTypeId and set it to display.
   map.mapTypes.set('styled_map', styledMapType)
   map.setMapTypeId('styled_map')
   console.log('in initializeMapWithGeo')
@@ -56,25 +56,6 @@ const placeMarker = function (position, map, icon, dragBool) {
   return marker
 }
 
-const attachMarkerHandlers = function (marker) {
-  google.maps.event.addListener(marker, 'dragend', function (e) {
-    console.log('dragging ended')
-    console.log('latitiude is', e.latLng.lat())
-    console.log('longitude is', e.latLng.lng())
-  })
-
-  google.maps.event.addListener(marker, 'click', function (e) {
-    console.log('clicked marker')
-    $('#myParkingModal').modal('toggle')
-  })
-  // google.maps.event.addListener(marker, 'dragstart', function (e) {
-  // console.log('dragging ended')
-  // document.getElementById('current').innerHTML =
-  // '<p>Marker dropped: Current Lat: ' + e.latLng.lat().toFixed(3) +
-  // ' Current Lng: ' + e.latLng.lng().toFixed(3) + '</p>'
-  // })
-}
-
 const loadMapOverlays = function (map) {
   let myControl = document.getElementById('current')
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(myControl)
@@ -102,28 +83,6 @@ const getCurrentLocation = function () {
     navigator.geolocation.getCurrentPosition(resolve, reject, options)
   })
 }
-
-// const geoLocation = function () {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(function (position) {
-//       console.log('navigator geolocation is', position)
-//       const pos = {
-//         lat: position.coords.latitude,
-//         lng: position.coords.longitude
-//       }
-//       if (pos) {
-//         console.log('returning pos of', pos)
-//         return pos
-//       }
-//     }, function (err) {
-//       console.warn(`ERROR(${err.code}): ${err.message}`)
-//     })
-//   } else {
-//     // Browser doesn't support Geolocation
-//     console.log('If browser does not support geolocation, need to show map centered on Boston and tell the user to search for current location')
-//     // handleLocationError(false, infoWindow, map.getCenter())
-//   }
-// }
 
 const displayInfoWindow = function () {
   let infoWindow = new google.maps.InfoWindow
@@ -153,7 +112,6 @@ module.exports = {
   initializeMapWithGeo,
   initializeMapNoGeo,
   placeMarker,
-  attachMarkerHandlers,
   loadMapOverlays,
   // geoLocation,
   getCurrentLocation,
