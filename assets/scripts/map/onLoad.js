@@ -14,31 +14,23 @@ const mapApiCall = function () {
 
     mapFunctions.getCurrentLocation()
       .then(function (position) {
-        // console.log(position.coords)
-        // console.log('before mapStyle in onLoad.js', mapStyle)
         const mapStyle = mapFunctions.styleMap()
-        // console.log('after mapStyle in onLoad.js', mapStyle)
-        // console.log('before initializeMapWithGeo in onLoad.js')
         const map = mapFunctions.initializeMapWithGeo(position, mapStyle)
-        // console.log('after initializeMapWithGeo in onLoad.js')
         store.map = map
-
         const icon = icons.userIcon()
-
         const userIcon = mapFunctions.placeMarker(position, map, icon, true)
         store.userIcon = userIcon
-        // console.log('marker is lat, lng', userIcon.getPosition().lat(), userIcon.getPosition().lng())
         mapFunctions.attachMarkerHandlers(userIcon)
-        // mapFunctions.loadMapOverlays(map)
-        // const parkingDiv = document.createElement('div')
-        // const parkCar = new customControls.ParkCar(parkingDiv, map)
-        // parkingDiv.index = 1
-        // map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(parkingDiv)
       })
       .catch(function (err) {
         console.error('Position Error ', err.message)
         const mapStyle = mapFunctions.styleMap()
-        mapFunctions.initializeMapNoGeo(mapStyle)
+        const map = mapFunctions.initializeMapNoGeo(mapStyle)
+        store.map = map
+        const icon = icons.userIcon()
+        const userIcon = mapFunctions.placeMarker({lat: 42.3601, lng: -71.0589}, map, icon, true)
+        store.userIcon = userIcon
+        mapFunctions.attachMarkerHandlers(userIcon)
       })
   })
 }

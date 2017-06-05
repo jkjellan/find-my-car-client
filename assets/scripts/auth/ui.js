@@ -3,6 +3,7 @@
 const store = require('../store')
 const menu = require('./menu')
 const mapEvents = require('../map/events')
+const remove = require('../map/remove')
 
 const signUpSuccess = (ajaxResponse) => {
   // console.log('sign up Success')
@@ -35,6 +36,8 @@ const signOutSuccess = () => {
   store.user = null
   // console.log('store is: ', store)
   menu.signOutSuccess()
+  remove.removeCurrentCarIcon()
+  remove.removePastCarIcons()
 }
 
 const signOutFailure = (error) => {

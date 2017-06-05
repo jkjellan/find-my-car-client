@@ -37,3 +37,9 @@ const ParkCar = function (controlDiv, map) {
 module.exports = {
   ParkCar
 }
+
+// mapFunctions.loadMapOverlays(map)
+// const parkingDiv = document.createElement('div')
+// const parkCar = new customControls.ParkCar(parkingDiv, map)
+// parkingDiv.index = 1
+// map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(parkingDiv)
