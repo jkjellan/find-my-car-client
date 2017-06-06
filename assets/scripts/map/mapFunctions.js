@@ -6,6 +6,7 @@ const initializeMapWithGeo = function (position, styledMapType) {
   const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 17,
     center: latLng,
+    streetViewControl: false,
     mapTypeControlOptions: {
       mapTypesIds: ['roadmap', 'styled_map']
     }
@@ -24,6 +25,7 @@ const initializeMapNoGeo = function (styledMapType) {
   const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 17,
     center: latLng,
+    streetViewControl: false,
     mapTypeControlOptions: {
       mapTypesIds: ['styled_map', 'black_&_white']
     }
