@@ -43,13 +43,29 @@ const onDeleteParkingSpot = function () {
     .catch(mapUi.deleteParkingSpotFailure)
 }
 
+const onEditParkingSpot = function () {
+  event.preventDefault()
+  const note = getFormFields(this).parking_spot.note
+  console.log('Edit parking form data is', note)
+  const data = {
+    parking_spot: {
+      note: note
+    }
+  }
+  mapApi.editParkingSpot(data)
+    .then(mapUi.editParkingSpotSuccess)
+    .catch(mapUi.editParkingSpotFailure)
+}
+
 const addHandlers = () => {
   $('#parking-spot').on('submit', onNewParkingSpot)
   $('#parking-spot-delete').on('click', onDeleteParkingSpot)
+  $('#parking-spot-edit').on('submit', onEditParkingSpot)
 }
 
 module.exports = {
   onGetParkingSpots,
   onGetParkingSpot,
+  onEditParkingSpot,
   addHandlers
 }

@@ -21,7 +21,7 @@ const userIconHandlers = function (marker) {
 }
 
 const pastCarsIconHandlers = function (markerArray) {
-  const pastCarIcons = store.pastMarkersArray
+  const pastCarIcons = markerArray
   if (pastCarIcons[0]) {
     const length = pastCarIcons.length
     for (let i = 0; i < length; i++) {
@@ -29,7 +29,7 @@ const pastCarsIconHandlers = function (markerArray) {
         console.log('clicked past car marker')
         console.log('pastCarIcons[i] are', pastCarIcons[i])
         store.markerIdToDelete = pastCarIcons[i].id
-        $('#myDeleteEditModal').modal('toggle')
+        $('#myDeleteModal').modal('toggle')
       })
       // infoWindow.pastCarInfoWindow(pastCarIcons[i], i)
     }
@@ -37,7 +37,13 @@ const pastCarsIconHandlers = function (markerArray) {
 }
 
 const currentCarIconHandlers = function (marker) {
-
+  const currentCarIcon = marker
+  const currentCarListener = google.maps.event.addListener(currentCarIcon, 'click', function (e) {
+    console.log('clicked current car marker')
+    console.log('currentCarIcon is', currentCarIcon)
+    store.markerIdToEdit = currentCarIcon.id
+    $('#myEditModal').modal('toggle')
+  })
 }
 
 module.exports = {

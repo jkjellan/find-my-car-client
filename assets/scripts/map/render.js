@@ -59,8 +59,9 @@ const renderCurrentParkingLocation = function (ajaxResponse) {
     const longitude = parkingSpotsSorted[length - 1].longitude
     const latLng = {lat: latitude, lng: longitude}
     const icon = icons.currentParkingIcon()
-    const currentCar = mapFunctions.placeMarker(latLng, store.map, icon, false)
+    const currentCar = mapFunctions.placeMarker(latLng, store.map, icon, false, parkingSpotsSorted[length - 1].id)
     store.currentMarker = currentCar
+    iconHandlers.currentCarIconHandlers(store.currentMarker)
   }
 }
 

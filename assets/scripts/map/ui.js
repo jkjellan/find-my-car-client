@@ -46,6 +46,15 @@ const deleteParkingSpotFailure = () => {
   console.log('deleteParkingSpotFailure')
 }
 
+const editParkingSpotSuccess = (ajaxResponse) => {
+  console.log('editParkingSpotSuccess, ajax is', ajaxResponse)
+  $('#myEditModal').modal('toggle')
+}
+
+const editParkingSpotFailure = () => {
+  console.log('editParkingSpotFailure')
+}
+
 module.exports = {
   newParkingSpotSuccess,
   newParkingSpotFailure,
@@ -54,5 +63,7 @@ module.exports = {
   getParkingSpotSuccess,
   getParkingSpotFailure,
   deleteParkingSpotSuccess,
-  deleteParkingSpotFailure
+  deleteParkingSpotFailure,
+  editParkingSpotSuccess,
+  editParkingSpotFailure
 }

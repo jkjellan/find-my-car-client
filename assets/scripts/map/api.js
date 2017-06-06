@@ -45,9 +45,21 @@ const deleteParkingSpot = () => {
   })
 }
 
+const editParkingSpot = (data) => {
+  return $.ajax({
+    url: config.apiOrigin + '/parking_spots/' + store.markerIdToEdit,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 module.exports = {
   newParkingSpot,
   getParkingSpot,
   getParkingSpots,
-  deleteParkingSpot
+  deleteParkingSpot,
+  editParkingSpot
 }
