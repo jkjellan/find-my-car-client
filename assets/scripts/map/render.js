@@ -30,7 +30,7 @@ const renderPastParkingLocations = function (ajaxResponse) {
       const latitude = parkingSpotsSorted[i].latitude
       const longitude = parkingSpotsSorted[i].longitude
       const latLng = {lat: latitude, lng: longitude}
-      const pastCar = mapFunctions.placeMarker(latLng, store.map, icon, false)
+      const pastCar = mapFunctions.placeMarker(latLng, store.map, icon, false, parkingSpotsSorted[i].id)
       store.pastMarkersArray[i] = pastCar
     }
     iconHandlers.pastCarsIconHandlers(store.pastMarkersArray)

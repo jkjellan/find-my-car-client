@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const infoWindow = require('./infoWindows')
 
 const userIconHandlers = function (marker) {
   const userIconDragListener = google.maps.event.addListener(marker, 'dragend', function (e) {
@@ -26,8 +27,11 @@ const pastCarsIconHandlers = function (markerArray) {
     for (let i = 0; i < length; i++) {
       const pastcarListener = google.maps.event.addListener(pastCarIcons[i], 'click', function (e) {
         console.log('clicked past car marker')
-        console.log('e.LatLng.lat() is', e.latLng.lat())
+        console.log('pastCarIcons[i] are', pastCarIcons[i])
+        store.markerIdToDelete = pastCarIcons[i].id
+        $('#myDeleteEditModal').modal('toggle')
       })
+      // infoWindow.pastCarInfoWindow(pastCarIcons[i], i)
     }
   }
 }

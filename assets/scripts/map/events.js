@@ -37,8 +37,15 @@ const onGetParkingSpot = function () {
     .catch(mapUi.getParkingSpotFailure)
 }
 
+const onDeleteParkingSpot = function () {
+  mapApi.deleteParkingSpot()
+    .then(mapUi.deleteParkingSpotSuccess)
+    .catch(mapUi.deleteParkingSpotFailure)
+}
+
 const addHandlers = () => {
   $('#parking-spot').on('submit', onNewParkingSpot)
+  $('#parking-spot-delete').on('click', onDeleteParkingSpot)
 }
 
 module.exports = {

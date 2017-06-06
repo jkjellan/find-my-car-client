@@ -37,7 +37,7 @@ const initializeMapNoGeo = function (styledMapType) {
   return map
 }
 
-const placeMarker = function (position, map, icon, dragBool) {
+const placeMarker = function (position, map, icon, dragBool, id) {
   let latLng
   // if I passed in a google marker object (as I do onLoad), then extract lat and lng differently
   if (position.coords) {
@@ -54,6 +54,7 @@ const placeMarker = function (position, map, icon, dragBool) {
     icon: icon
     // animation: google.maps.Animation.BOUNCE
   })
+  marker.set('id', id)
   marker.setMap(map)
   return marker
 }

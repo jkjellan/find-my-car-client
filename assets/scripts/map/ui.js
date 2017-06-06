@@ -36,11 +36,23 @@ const getParkingSpotFailure = () => {
   console.log('getParkingSpotFailure')
 }
 
+const deleteParkingSpotSuccess = () => {
+  const mapEvents = require('./events')
+  console.log('delteParkingSpotSuccess')
+  mapEvents.onGetParkingSpots()
+}
+
+const deleteParkingSpotFailure = () => {
+  console.log('deleteParkingSpotFailure')
+}
+
 module.exports = {
   newParkingSpotSuccess,
   newParkingSpotFailure,
   getParkingSpotsSuccess,
   getParkingSpotsFailure,
   getParkingSpotSuccess,
-  getParkingSpotFailure
+  getParkingSpotFailure,
+  deleteParkingSpotSuccess,
+  deleteParkingSpotFailure
 }
