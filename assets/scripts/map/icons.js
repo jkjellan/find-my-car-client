@@ -11,10 +11,10 @@ const userIcon = function () {
 
 const pastParkingIcon = function () {
   return {
-    url: 'https://i.imgur.com/0FSgG7o.png',
-    scaledSize: new google.maps.Size(15, 15),
+    url: 'https://i.imgur.com/Hb33uqa.png',
+    scaledSize: new google.maps.Size(25, 25),
     origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(8, 14)
+    anchor: new google.maps.Point(13, 19)
   }
 }
 
