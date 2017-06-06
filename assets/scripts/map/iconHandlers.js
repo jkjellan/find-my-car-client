@@ -2,8 +2,7 @@
 
 const store = require('../store')
 
-const attachMarkerHandlers = function (marker) {
-
+const userIconHandlers = function (marker) {
   const userIconDragListener = google.maps.event.addListener(marker, 'dragend', function (e) {
     console.log('dragging ended')
     console.log('latitiude is', e.latLng.lat())
@@ -18,9 +17,27 @@ const attachMarkerHandlers = function (marker) {
   })
 
   store.userIconClickListener = userIconClickListener
+}
+
+const pastCarsIconHandlers = function (markerArray) {
+  const pastCarIcons = store.pastMarkersArray
+  if (pastCarIcons[0]) {
+    const length = pastCarIcons.length
+    for (let i = 0; i < length; i++) {
+      const pastcarListener = google.maps.event.addListener(pastCarIcons[i], 'click', function (e) {
+        console.log('clicked past car marker')
+        console.log('e.LatLng.lat() is', e.latLng.lat())
+      })
+    }
+  }
+}
+
+const currentCarIconHandlers = function (marker) {
 
 }
 
 module.exports = {
-  attachMarkerHandlers
+  userIconHandlers,
+  pastCarsIconHandlers,
+  currentCarIconHandlers
 }

@@ -4,6 +4,7 @@ const render = require('./render')
 // const mapEvents = require('./events')
 
 const newParkingSpotSuccess = (ajaxResponse) => {
+  $('#myParkingModal').modal('toggle')
   const mapEvents = require('./events')
   store.parking_spot = ajaxResponse.parking_spot
   console.log('new parking spot success, no really:', ajaxResponse)

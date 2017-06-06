@@ -23,7 +23,7 @@ const signInSuccess = (ajaxResponse) => {
   store.user = ajaxResponse.user
   menu.signInSuccess()
   mapEvents.onGetParkingSpots()
-  iconHandlers.attachMarkerHandlers(store.userIcon)
+  iconHandlers.userIconHandlers(store.userIcon)
 }
 
 const signInFailure = (error) => {
