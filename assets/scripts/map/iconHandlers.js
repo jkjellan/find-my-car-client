@@ -29,7 +29,8 @@ const pastCarsIconHandlers = function (markerArray) {
         console.log('clicked past car marker')
         console.log('pastCarIcons[i] are', pastCarIcons[i])
         store.markerIdToDelete = pastCarIcons[i].id
-        $('#myDeleteModal').modal('toggle')
+        // $('#myDeleteModal').modal('toggle')
+        $('.bottom-drawer .content-wrapper').show("slow")
       })
       // infoWindow.pastCarInfoWindow(pastCarIcons[i], i)
     }

@@ -15,6 +15,10 @@ $(() => {
 })
 
 $(() => {
+  $('.close-bottom-drawer').on('click', function () {
+    $('.bottom-drawer .content-wrapper').hide('slow')
+  })
+
   $('#sign-up-modal').on('click', function () { $('#tempSignUpError').html('') })
   $('#sign-up-modal').on('click', function () { $('#sign-up').find('input:text, input:password, select, textarea').val('') })
 
