@@ -11,6 +11,7 @@ const updateDrawer = function (marker) {
   $('#removeRecord').show()
   $('#note').show()
   $('#update-note').show()
+  $('.note-header').show()
 }
 
 module.exports = {

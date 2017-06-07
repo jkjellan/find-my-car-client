@@ -50,6 +50,7 @@ const signOutSuccess = () => {
   $('#removeRecord').hide()
   $('#note').hide()
   $('#update-note').hide()
+  $('.note-header').hide()
 }
 
 const signOutFailure = (error) => {

@@ -41,6 +41,7 @@ const pastCarsIconHandlers = function (markerArray) {
         $('#removeRecord').show()
         $('#note').show()
         $('#update-note').show()
+        $('.note-header').show()
       })
       // infoWindow.pastCarInfoWindow(pastCarIcons[i], i)
     }
@@ -63,6 +64,7 @@ const currentCarIconHandlers = function (marker) {
     $('#removeRecord').show()
     $('#note').show()
     $('#update-note').show()
+    $('.note-header').show()
   })
 }
 
