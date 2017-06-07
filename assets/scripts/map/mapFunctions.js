@@ -1,5 +1,7 @@
 'use strict'
 
+const helpers = require('./helpers/parseTime.js')
+
 const initializeMapWithGeo = function (position, styledMapType) {
   console.log('initializeMapWithGeo, position is', position)
   const latLng = {lat: position.coords.latitude, lng: position.coords.longitude}
@@ -37,7 +39,7 @@ const initializeMapNoGeo = function (styledMapType) {
   return map
 }
 
-const placeMarker = function (position, map, icon, dragBool, id) {
+const placeMarker = function (position, map, icon, dragBool, id, time, note, currentBool) {
   let latLng
   // if I passed in a google marker object (as I do onLoad), then extract lat and lng differently
   if (position.coords) {
@@ -54,7 +56,22 @@ const placeMarker = function (position, map, icon, dragBool, id) {
     icon: icon
     // animation: google.maps.Animation.BOUNCE
   })
+
+  let formattedDate = null
+  let formattedTime = null
+
+  console.log(time)
+
+  if (time) {
+    formattedDate = helpers.date(time)
+    formattedTime = helpers.time(time)
+  }
+
   marker.set('id', id)
+  marker.set('date', formattedDate)
+  marker.set('time', formattedTime)
+  marker.set('note', note)
+  marker.set('currentBool', currentBool)
   marker.setMap(map)
   return marker
 }

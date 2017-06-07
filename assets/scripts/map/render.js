@@ -30,7 +30,7 @@ const renderPastParkingLocations = function (ajaxResponse) {
       const latitude = parkingSpotsSorted[i].latitude
       const longitude = parkingSpotsSorted[i].longitude
       const latLng = {lat: latitude, lng: longitude}
-      const pastCar = mapFunctions.placeMarker(latLng, store.map, icon, false, parkingSpotsSorted[i].id)
+      const pastCar = mapFunctions.placeMarker(latLng, store.map, icon, false, parkingSpotsSorted[i].id, parkingSpotsSorted[i].created_at, parkingSpotsSorted[i].note, false)
       store.pastMarkersArray[i] = pastCar
     }
     iconHandlers.pastCarsIconHandlers(store.pastMarkersArray)
@@ -59,7 +59,7 @@ const renderCurrentParkingLocation = function (ajaxResponse) {
     const longitude = parkingSpotsSorted[length - 1].longitude
     const latLng = {lat: latitude, lng: longitude}
     const icon = icons.currentParkingIcon()
-    const currentCar = mapFunctions.placeMarker(latLng, store.map, icon, false, parkingSpotsSorted[length - 1].id)
+    const currentCar = mapFunctions.placeMarker(latLng, store.map, icon, false, parkingSpotsSorted[length - 1].id, parkingSpotsSorted[length - 1].created_at, parkingSpotsSorted[length - 1].note, true)
     store.currentMarker = currentCar
     iconHandlers.currentCarIconHandlers(store.currentMarker)
   }
