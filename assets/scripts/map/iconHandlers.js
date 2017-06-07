@@ -35,6 +35,7 @@ const pastCarsIconHandlers = function (markerArray) {
         $('#date').html(pastCarIcons[i].date)
         $('#time').html(pastCarIcons[i].time)
         $('#note').html(pastCarIcons[i].note)
+        $('#removeRecord').show()
       })
       // infoWindow.pastCarInfoWindow(pastCarIcons[i], i)
     }

@@ -39,6 +39,11 @@ const getParkingSpotFailure = () => {
 const deleteParkingSpotSuccess = () => {
   const mapEvents = require('./events')
   console.log('delteParkingSpotSuccess')
+  $('#date').html('')
+  $('#time').html('')
+  $('#note').html('')
+  $('#removeRecord').hide()
+
   mapEvents.onGetParkingSpots()
 }
 

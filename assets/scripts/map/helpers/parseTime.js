@@ -51,7 +51,7 @@ const date = function (dateTime) {
   }
 
   const month = monthHash[dateTime.split('').slice(5, 7).join('')]
-  const day = dayHash[dateTime.split('').slice(5, 7).join('')]
+  const day = dayHash[dateTime.split('').slice(8, 10).join('')]
   const year = dateTime.split('').slice(0, 4).join('')
   const date = month + ' ' + day + ', ' + year
   console.log(date)
