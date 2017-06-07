@@ -60,7 +60,7 @@ const placeMarker = function (position, map, icon, dragBool, id, time, note, cur
   let formattedDate = null
   let formattedTime = null
 
-  console.log(time)
+  // console.log(time)
 
   if (time) {
     formattedDate = helpers.date(time)

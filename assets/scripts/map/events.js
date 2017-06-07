@@ -7,13 +7,13 @@ const mapUi = require('./ui')
 
 const onNewParkingSpot = function () {
   event.preventDefault()
-  const note = getFormFields(this).parking_spot.note
-  console.log('getting here? parking form data is', note)
+  // const note = getFormFields(this).parking_spot.note
+  // console.log('getting here? parking form data is', note)
   const data = {
     parking_spot: {
       latitude: store.userIcon.getPosition().lat(),
       longitude: store.userIcon.getPosition().lng(),
-      note: note
+      note: ''
     }
   }
 
@@ -69,5 +69,6 @@ module.exports = {
   onGetParkingSpots,
   onGetParkingSpot,
   onEditParkingSpot,
-  addHandlers
+  addHandlers,
+  onNewParkingSpot
 }

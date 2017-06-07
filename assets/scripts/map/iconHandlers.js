@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('../store')
-const infoWindow = require('./infoWindows')
+// const infoWindow = require('./infoWindows')
 
 const userIconHandlers = function (marker) {
   const userIconDragListener = google.maps.event.addListener(marker, 'dragend', function (e) {
@@ -14,7 +14,9 @@ const userIconHandlers = function (marker) {
 
   const userIconClickListener = google.maps.event.addListener(marker, 'click', function (e) {
     console.log('clicked marker')
-    $('#myParkingModal').modal('toggle')
+    const mapEvents = require('./events.js')
+    // $('#myParkingModal').modal('toggle')
+    $('#parking-spot').on('submit', mapEvents.onNewParkingSpot())
   })
 
   store.userIconClickListener = userIconClickListener
@@ -50,8 +52,17 @@ const currentCarIconHandlers = function (marker) {
   const currentCarListener = google.maps.event.addListener(currentCarIcon, 'click', function (e) {
     console.log('clicked current car marker')
     console.log('currentCarIcon is', currentCarIcon)
+    store.markerIdToDelete = currentCarIcon.id
     store.markerIdToEdit = currentCarIcon.id
-    $('#myEditModal').modal('toggle')
+
+    $('.bottom-drawer .content-wrapper').show('slow')
+    console.log('date-time and note are', currentCarIcon.time, currentCarIcon.note)
+    $('#date').html(currentCarIcon.date)
+    $('#time').html(currentCarIcon.time)
+    $('#note').html(currentCarIcon.note)
+    $('#removeRecord').show()
+    $('#note').show()
+    $('#update-note').show()
   })
 }
 

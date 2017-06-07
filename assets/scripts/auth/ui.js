@@ -21,6 +21,8 @@ const signUpFailure = (error) => {
 const signInSuccess = (ajaxResponse) => {
   console.log('sign in success', ajaxResponse.user)
   store.user = ajaxResponse.user
+  // super hacky way to prevent bottom drawer from updating in certain cirumstances
+  store.updateDrawer = false
   menu.signInSuccess()
   mapEvents.onGetParkingSpots()
   iconHandlers.userIconHandlers(store.userIcon)
@@ -42,6 +44,12 @@ const signOutSuccess = () => {
   remove.removePastCarIcons()
   store.userIconDragListener.remove()
   store.userIconClickListener.remove()
+  $('#date').html('')
+  $('#time').html('')
+  $('#note').html('')
+  $('#removeRecord').hide()
+  $('#note').hide()
+  $('#update-note').hide()
 }
 
 const signOutFailure = (error) => {
