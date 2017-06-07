@@ -45,7 +45,8 @@ const onDeleteParkingSpot = function () {
 
 const onEditParkingSpot = function () {
   event.preventDefault()
-  const note = getFormFields(this).parking_spot.note
+  // const note = getFormFields(this).parking_spot.note
+  const note = $('#note').html()
   console.log('Edit parking form data is', note)
   const data = {
     parking_spot: {
@@ -60,7 +61,8 @@ const onEditParkingSpot = function () {
 const addHandlers = () => {
   $('#parking-spot').on('submit', onNewParkingSpot)
   $('#parking-spot-delete').on('click', onDeleteParkingSpot)
-  $('#parking-spot-edit').on('submit', onEditParkingSpot)
+  // $('#parking-spot-edit').on('submit', onEditParkingSpot)
+  $('#update-note').on('click', onEditParkingSpot)
 }
 
 module.exports = {

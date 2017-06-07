@@ -29,6 +29,7 @@ const pastCarsIconHandlers = function (markerArray) {
         console.log('clicked past car marker')
         console.log('pastCarIcons[i] are', pastCarIcons[i])
         store.markerIdToDelete = pastCarIcons[i].id
+        store.markerIdToEdit = pastCarIcons[i].id
         // $('#myDeleteModal').modal('toggle')
         $('.bottom-drawer .content-wrapper').show('slow')
         console.log('date-time and note are', pastCarIcons[i].time, pastCarIcons[i].note)
@@ -36,6 +37,8 @@ const pastCarsIconHandlers = function (markerArray) {
         $('#time').html(pastCarIcons[i].time)
         $('#note').html(pastCarIcons[i].note)
         $('#removeRecord').show()
+        $('#note').show()
+        $('#update-note').show()
       })
       // infoWindow.pastCarInfoWindow(pastCarIcons[i], i)
     }

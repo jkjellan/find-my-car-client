@@ -21,6 +21,18 @@
   // box-sizing: border-box;
   height: 83px;
   overflow-y: scroll;
+  background: $background-dark-t;
+}
+
+.update-note {
+  position: absolute;
+  font-size: 14px;
+  color: white;
+  background: $background-dark;
+  border-radius: 2px;
+  border: none;
+  right: 33px;
+  bottom: 91px;
 }
 
 .date {

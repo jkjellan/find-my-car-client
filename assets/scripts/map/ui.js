@@ -43,6 +43,8 @@ const deleteParkingSpotSuccess = () => {
   $('#time').html('')
   $('#note').html('')
   $('#removeRecord').hide()
+  $('#note').hide()
+  $('#update-note').hide()
 
   mapEvents.onGetParkingSpots()
 }
@@ -52,8 +54,9 @@ const deleteParkingSpotFailure = () => {
 }
 
 const editParkingSpotSuccess = (ajaxResponse) => {
+  const mapEvents = require('./events')
   console.log('editParkingSpotSuccess, ajax is', ajaxResponse)
-  $('#myEditModal').modal('toggle')
+  mapEvents.onGetParkingSpots()
 }
 
 const editParkingSpotFailure = () => {
