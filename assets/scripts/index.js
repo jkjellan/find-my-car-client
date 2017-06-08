@@ -35,6 +35,7 @@ $(() => {
   $('#checkoutBtn').hide()
 
   $('#update-success-alert-id').hide()
+  $('#sign-in-alert-id').hide()
 })
 
 // use require with a reference to bundle the file and use it in this file

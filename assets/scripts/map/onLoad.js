@@ -3,6 +3,7 @@ const mapFunctions = require('./mapFunctions.js')
 const store = require('../store')
 const icons = require('./icons')
 const style = require('./mapStyles')
+const iconHandlers = require('./iconHandlers')
 // const iconHandlers = require('./iconHandlers')
 
 const GoogleMapsLoader = require('google-maps')
@@ -21,6 +22,7 @@ const mapApiCall = function () {
         const icon = icons.userIcon()
         const userIcon = mapFunctions.placeMarker(position, map, icon, true)
         store.userIcon = userIcon
+        iconHandlers.signInIconHandlers(userIcon)
         // iconHandlers.attachMarkerHandlers(userIcon)
       })
       .catch(function (err) {

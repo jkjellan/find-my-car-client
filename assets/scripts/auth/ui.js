@@ -26,6 +26,7 @@ const signInSuccess = (ajaxResponse) => {
   menu.signInSuccess()
   mapEvents.onGetParkingSpots()
   iconHandlers.userIconHandlers(store.userIcon)
+  store.userIconSignInListener.remove()
 }
 
 const signInFailure = (error) => {
@@ -44,6 +45,7 @@ const signOutSuccess = () => {
   remove.removePastCarIcons()
   store.userIconDragListener.remove()
   store.userIconClickListener.remove()
+  iconHandlers.signInIconHandlers(store.userIcon)
   $('#date').html('')
   $('#time').html('')
   $('#note').html('')

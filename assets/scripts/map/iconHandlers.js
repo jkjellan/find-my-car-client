@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const alerts = require('./helpers/showAlerts')
 // const infoWindow = require('./infoWindows')
 
 const userIconHandlers = function (marker) {
@@ -20,6 +21,17 @@ const userIconHandlers = function (marker) {
   })
 
   store.userIconClickListener = userIconClickListener
+}
+
+const signInIconHandlers = function (marker) {
+  const userIconSignInListener = google.maps.event.addListener(marker, 'click', function (e) {
+    console.log('clicked marker')
+    const mapEvents = require('./events.js')
+    // $('#myParkingModal').modal('toggle')
+    alerts.showUpdateAlert($('#sign-in-alert-id'))
+  })
+
+  store.userIconSignInListener = userIconSignInListener
 }
 
 const pastCarsIconHandlers = function (markerArray) {
@@ -72,5 +84,6 @@ const currentCarIconHandlers = function (marker) {
 module.exports = {
   userIconHandlers,
   pastCarsIconHandlers,
-  currentCarIconHandlers
+  currentCarIconHandlers,
+  signInIconHandlers
 }
