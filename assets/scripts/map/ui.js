@@ -70,6 +70,7 @@ const deleteParkingSpotSuccess = () => {
   $('#note').hide()
   $('#update-note').hide()
   $('.note-header').hide()
+  $('#save-note').hide()
 
   // about to do something truly hacky. hopefully can fix later
   store.updateDrawer = false

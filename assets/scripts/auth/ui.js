@@ -27,6 +27,7 @@ const signInSuccess = (ajaxResponse) => {
   mapEvents.onGetParkingSpots()
   iconHandlers.userIconHandlers(store.userIcon)
   store.userIconSignInListener.remove()
+  $('#email-display').html(store.user.email)
 }
 
 const signInFailure = (error) => {
@@ -53,6 +54,9 @@ const signOutSuccess = () => {
   $('#note').hide()
   $('#update-note').hide()
   $('.note-header').hide()
+  $('#save-note').hide()
+
+  $('#email-display').html('')
 }
 
 const signOutFailure = (error) => {

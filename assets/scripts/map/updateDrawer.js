@@ -12,6 +12,7 @@ const updateDrawer = function (marker) {
   $('#note').show()
   $('#update-note').show()
   $('.note-header').show()
+  $('#save-note').show()
 }
 
 module.exports = {

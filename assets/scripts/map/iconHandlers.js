@@ -55,6 +55,7 @@ const pastCarsIconHandlers = function (markerArray) {
         $('#note').show()
         $('#update-note').show()
         $('.note-header').show()
+        $('#save-note').show()
       })
       // infoWindow.pastCarInfoWindow(pastCarIcons[i], i)
     }
@@ -78,6 +79,7 @@ const currentCarIconHandlers = function (marker) {
     $('#note').show()
     $('#update-note').show()
     $('.note-header').show()
+    $('#save-note').show()
   })
 }
 
