@@ -16,7 +16,7 @@ const newParkingSpotSuccess = (ajaxResponse) => {
   // Same reason. If a user immediately deletes after creation, I want the marker being
   // deleted to be the one that was just created.
   store.markerIdToDelete = ajaxResponse.parking_spot.id
-  console.log('new parking spot success, no really:', ajaxResponse)
+  // console.log('new parking spot success, no really:', ajaxResponse)
   // need to call function to render new marker, with custom
   // car marker.  not draggable. Click handler allows editing note.
   mapEvents.onGetParkingSpots()
@@ -26,7 +26,7 @@ const newParkingSpotSuccess = (ajaxResponse) => {
 }
 
 const newParkingSpotFailure = () => {
-  console.log('parkingSpotFailure')
+  // console.log('parkingSpotFailure')
   alerts.showUpdateAlert($('#new-parking-spot-failure-alert-id'))
 }
 
@@ -48,24 +48,24 @@ const getParkingSpotsSuccess = (ajaxResponse) => {
 }
 
 const getParkingSpotsFailure = () => {
-  console.log('getParkingSpotsFailure')
+  // console.log('getParkingSpotsFailure')
   alerts.showUpdateAlert($('#get-parking-spots-failure-alert-id'))
 }
 
 const getParkingSpotSuccess = (ajaxResponse) => {
   const mapEvents = require('./events')
-  console.log('getParkingSpotSuccess', ajaxResponse)
+  // console.log('getParkingSpotSuccess', ajaxResponse)
   mapEvents.onGetParkingSpots()
 }
 
 const getParkingSpotFailure = () => {
-  console.log('getParkingSpotFailure')
+  // console.log('getParkingSpotFailure')
   alerts.showUpdateAlert($('#get-parking-spot-failure-alert-id'))
 }
 
 const deleteParkingSpotSuccess = () => {
   const mapEvents = require('./events')
-  console.log('delteParkingSpotSuccess')
+  // console.log('delteParkingSpotSuccess')
   $('#date').html('')
   $('#time').html('')
   $('#note').html('')
@@ -83,20 +83,20 @@ const deleteParkingSpotSuccess = () => {
 }
 
 const deleteParkingSpotFailure = () => {
-  console.log('deleteParkingSpotFailure')
+  // console.log('deleteParkingSpotFailure')
   alerts.showUpdateAlert($('#delete-failure-alert-id'))
 }
 
 const editParkingSpotSuccess = (ajaxResponse) => {
   const mapEvents = require('./events')
   store.updateDrawer = false
-  console.log('editParkingSpotSuccess, ajax is', ajaxResponse)
+  // console.log('editParkingSpotSuccess, ajax is', ajaxResponse)
   mapEvents.onGetParkingSpots()
   alerts.showUpdateAlert($('#update-success-alert-id'))
 }
 
 const editParkingSpotFailure = () => {
-  console.log('editParkingSpotFailure')
+  // console.log('editParkingSpotFailure')
   alerts.showUpdateAlert($('#update-failure-alert-id'))
 }
 

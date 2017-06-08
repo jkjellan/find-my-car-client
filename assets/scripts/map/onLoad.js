@@ -13,7 +13,7 @@ GoogleMapsLoader.LIBRARIES = ['geometry', 'places']
 
 const mapApiCall = function () {
   GoogleMapsLoader.load(function (google) {
-    console.log('empty starting')
+    // console.log('empty starting')
 
     mapFunctions.getCurrentLocation()
       .then(function (position) {
@@ -26,8 +26,8 @@ const mapApiCall = function () {
         iconHandlers.signInIconHandlers(userIcon)
         // iconHandlers.attachMarkerHandlers(userIcon)
       })
-      .catch(function (err) {
-        console.error('Position Error ', err.message)
+      .catch(function () {
+        // console.error('Position Error ', err.message)
         const mapStyle = style.styleMap()
         const map = mapFunctions.initializeMapNoGeo(mapStyle)
         store.map = map

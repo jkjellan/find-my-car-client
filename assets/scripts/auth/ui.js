@@ -8,19 +8,19 @@ const iconHandlers = require('../map/iconHandlers')
 const alerts = require('../map/helpers/showAlerts')
 
 const signUpSuccess = (ajaxResponse) => {
-  // console.log('sign up Success')
-  console.log('sign-up success, user:', ajaxResponse.user)
+  // // console.log('sign up Success')
+  // console.log('sign-up success, user:', ajaxResponse.user)
   menu.signUpSuccess()
 }
 
 const signUpFailure = (error) => {
-  // console.log('sign up error')
+  // // console.log('sign up error')
   // console.error(error)
   menu.signUpError()
 }
 
 const signInSuccess = (ajaxResponse) => {
-  console.log('sign in success', ajaxResponse.user)
+  // console.log('sign in success', ajaxResponse.user)
   store.user = ajaxResponse.user
   // super hacky way to prevent bottom drawer from updating in certain cirumstances
   store.updateDrawer = false
@@ -32,17 +32,17 @@ const signInSuccess = (ajaxResponse) => {
 }
 
 const signInFailure = (error) => {
-  // console.log('sign in failure')
+  // // console.log('sign in failure')
   // console.error(error)
   menu.signInError()
 }
 
 const signOutSuccess = () => {
   alerts.showUpdateAlert($('#sign-out-success-alert-id'))
-  // console.log('sign out success, nothing was returned')
-  // console.log('store is: ', store)
+  // // console.log('sign out success, nothing was returned')
+  // // console.log('store is: ', store)
   store.user = null
-  // console.log('store is: ', store)
+  // // console.log('store is: ', store)
   menu.signOutSuccess()
   remove.removeCurrentCarIcon()
   remove.removePastCarIcons()
@@ -62,19 +62,19 @@ const signOutSuccess = () => {
 }
 
 const signOutFailure = (error) => {
-  // console.log('sign out failure')
+  // // console.log('sign out failure')
   // console.error(error)
   alerts.showUpdateAlert($('#sign-out-failure-alert-id'))
 }
 
 const changePasswordSuccess = () => {
-  // console.log('change password success, nothing was returned')
-  // console.log('store is: ', store)
+  // // console.log('change password success, nothing was returned')
+  // // console.log('store is: ', store)
   menu.changePasswordSuccess()
 }
 
 const changePasswordFailure = (error) => {
-  // console.log('change password failure')
+  // // console.log('change password failure')
   // console.error(error)
   menu.changePasswordError()
 }

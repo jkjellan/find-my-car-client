@@ -4,7 +4,7 @@ const helpers = require('./helpers/parseTime.js')
 const store = require('../store')
 
 const initializeMapWithGeo = function (position, styledMapType) {
-  console.log('initializeMapWithGeo, position is', position)
+  // console.log('initializeMapWithGeo, position is', position)
   const latLng = {lat: position.coords.latitude, lng: position.coords.longitude}
   const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 17,
@@ -18,12 +18,12 @@ const initializeMapWithGeo = function (position, styledMapType) {
   // Associate the styled map with the MapTypeId and set it to display.
   map.mapTypes.set('styled_map', styledMapType)
   map.setMapTypeId('styled_map')
-  console.log('in initializeMapWithGeo')
+  // console.log('in initializeMapWithGeo')
   return map
 }
 
 const initializeMapNoGeo = function (styledMapType) {
-  console.log('initializeMapNoGeo Ran')
+  // console.log('initializeMapNoGeo Ran')
   const latLng = {lat: 42.3601, lng: -71.0589}
   const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 17,
@@ -44,7 +44,7 @@ const placeMarker = function (position, map, icon, dragBool, id, time, note, cur
   let latLng
   // if I passed in a google marker object (as I do onLoad), then extract lat and lng differently
   if (position.coords) {
-    console.log('about to place a marker to position, map', position, map)
+    // console.log('about to place a marker to position, map', position, map)
     latLng = {lat: position.coords.latitude, lng: position.coords.longitude}
   } else {
     latLng = position
@@ -74,21 +74,21 @@ const placeMarker = function (position, map, icon, dragBool, id, time, note, cur
     })
   }
 
-  console.log('dragBool is', dragBool)
+  // console.log('dragBool is', dragBool)
   // dragBool is a proxy for whether the icon is the user Icon is not
   // true means it's the userIcon, and I do not want to attach animation
   // to the userIcon
-  console.log('just prior to add animation if statement')
+  // console.log('just prior to add animation if statement')
   if (!dragBool) {
-    console.log('inside if condition')
+    // console.log('inside if condition')
     marker.addListener('click', toggleBounce)
   }
 
   function toggleBounce () {
-    console.log('in toggleBound')
-    console.log('marker animation is', marker.getAnimation())
+    // console.log('in toggleBound')
+    // console.log('marker animation is', marker.getAnimation())
     if (marker.getAnimation() !== null && marker.getAnimation() !== undefined) {
-      console.log('there is already an animation active')
+      // console.log('there is already an animation active')
     } else {
       marker.setAnimation(google.maps.Animation.BOUNCE)
       if (store.priorAnimationMarker) {
@@ -100,7 +100,7 @@ const placeMarker = function (position, map, icon, dragBool, id, time, note, cur
   let formattedDate = null
   let formattedTime = null
 
-  // console.log(time)
+  // // console.log(time)
 
   if (time) {
     formattedDate = helpers.date(time)

@@ -6,7 +6,7 @@ const removePastCarIcons = function () {
   // remove all markers currently on map
   if (store.pastMarkersArray) {
     for (let i = 0; i < store.pastMarkersArray.length; i++) {
-      // console.log('about to remove listeners and car markers from map')
+      // // console.log('about to remove listeners and car markers from map')
       google.maps.event.clearInstanceListeners(store.pastMarkersArray[i])
       store.pastMarkersArray[i].setMap(null)
     }

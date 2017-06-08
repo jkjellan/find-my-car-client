@@ -198,7 +198,7 @@ const styleMap = function () {
     }
   ],
   {name: 'Black & White'})
-  console.log('in styleMap in mapFunctions.js')
+  // console.log('in styleMap in mapFunctions.js')
   return styledMapType
 }
 

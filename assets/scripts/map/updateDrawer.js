@@ -1,10 +1,10 @@
 'use strict'
 
 const updateDrawer = function (marker) {
-  console.log('about to update drawer with marker', marker)
+  // console.log('about to update drawer with marker', marker)
   const currentCarIcon = marker
 
-  console.log('date-time and note are', currentCarIcon.time, currentCarIcon.note)
+  // console.log('date-time and note are', currentCarIcon.time, currentCarIcon.note)
   $('#date').html(currentCarIcon.date)
   $('#time').html(currentCarIcon.time)
   $('#note').html(currentCarIcon.note)

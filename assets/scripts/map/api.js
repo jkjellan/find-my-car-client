@@ -4,7 +4,7 @@ const store = require('../store')
 
 const newParkingSpot = (data) => {
   // data.parking_spot.user_id = store.user.id
-  console.log('why will not your return!', data)
+  // console.log('why will not your return!', data)
   return $.ajax({
     url: config.apiOrigin + '/parking_spots',
     method: 'POST',

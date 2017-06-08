@@ -6,7 +6,7 @@ const iconHandlers = require('./iconHandlers')
 
 const renderPastParkingLocations = function (ajaxResponse) {
 
-  console.log('this function renders past parking locations', ajaxResponse)
+  // console.log('this function renders past parking locations', ajaxResponse)
   // if there are no parking_spots in the Ajax response, then don't try to render things
   // that don't exist.
   if (ajaxResponse.parking_spots[0]) {
@@ -14,9 +14,9 @@ const renderPastParkingLocations = function (ajaxResponse) {
     const parkingSpotsSorted = ajaxResponse.parking_spots.sort(function (a, b) {
       return a.id - b.id
     })
-    console.log('sortedAjax is', parkingSpotsSorted)
+    // console.log('sortedAjax is', parkingSpotsSorted)
 
-    console.log('parkingSpotsSorted[0] is', parkingSpotsSorted[0])
+    // console.log('parkingSpotsSorted[0] is', parkingSpotsSorted[0])
     const mapFunctions = require('./mapFunctions')
     const icons = require('./icons')
 
@@ -45,7 +45,7 @@ const renderCurrentParkingLocation = function (ajaxResponse) {
     const parkingSpotsSorted = ajaxResponse.parking_spots.sort(function (a, b) {
       return a.id - b.id
     })
-    console.log('sortedAjax is', parkingSpotsSorted)
+    // console.log('sortedAjax is', parkingSpotsSorted)
 
     const mapFunctions = require('./mapFunctions')
     const icons = require('./icons')

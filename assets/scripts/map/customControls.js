@@ -30,7 +30,7 @@ const ParkCar = function (controlDiv, map) {
 
   // Setup the click event listener
   controlUI.addEventListener('click', function () {
-    console.log('Not using this custom control anymore. Probably will reuse later for centering map, etc.')
+    // console.log('Not using this custom control anymore. Probably will reuse later for centering map, etc.')
   })
 }
 

@@ -54,7 +54,7 @@ const date = function (dateTime) {
   const day = dayHash[dateTime.split('').slice(8, 10).join('')]
   const year = dateTime.split('').slice(0, 4).join('')
   const date = month + ' ' + day + ', ' + year
-  // console.log(date)
+  // // console.log(date)
   return date
 }
 
@@ -91,7 +91,7 @@ const time = function (dateTime) {
   const amPm = hourHash[dateTime.split('').slice(11, 13).join('')]['amPm']
   const min = dateTime.split('').slice(14, 16).join('')
   const time = hour + ':' + min + amPm
-  // console.log(time)
+  // // console.log(time)
   return time
 }
 
