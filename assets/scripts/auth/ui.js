@@ -5,6 +5,7 @@ const menu = require('./menu')
 const mapEvents = require('../map/events')
 const remove = require('../map/remove')
 const iconHandlers = require('../map/iconHandlers')
+const alerts = require('../map/helpers/showAlerts')
 
 const signUpSuccess = (ajaxResponse) => {
   // console.log('sign up Success')
@@ -62,6 +63,7 @@ const signOutSuccess = () => {
 const signOutFailure = (error) => {
   // console.log('sign out failure')
   // console.error(error)
+  alerts.showUpdateAlert($('#sign-out-failure-alert-id'))
 }
 
 const changePasswordSuccess = () => {

@@ -27,6 +27,7 @@ const newParkingSpotSuccess = (ajaxResponse) => {
 
 const newParkingSpotFailure = () => {
   console.log('parkingSpotFailure')
+  alerts.showUpdateAlert($('#new-parking-spot-failure-alert-id'))
 }
 
 const getParkingSpotsSuccess = (ajaxResponse) => {
@@ -48,6 +49,7 @@ const getParkingSpotsSuccess = (ajaxResponse) => {
 
 const getParkingSpotsFailure = () => {
   console.log('getParkingSpotsFailure')
+  alerts.showUpdateAlert($('#get-parking-spots-failure-alert-id'))
 }
 
 const getParkingSpotSuccess = (ajaxResponse) => {
@@ -58,6 +60,7 @@ const getParkingSpotSuccess = (ajaxResponse) => {
 
 const getParkingSpotFailure = () => {
   console.log('getParkingSpotFailure')
+  alerts.showUpdateAlert($('#get-parking-spot-failure-alert-id'))
 }
 
 const deleteParkingSpotSuccess = () => {
@@ -75,10 +78,13 @@ const deleteParkingSpotSuccess = () => {
   // about to do something truly hacky. hopefully can fix later
   store.updateDrawer = false
   mapEvents.onGetParkingSpots()
+
+  alerts.showUpdateAlert($('#delete-success-alert-id'))
 }
 
 const deleteParkingSpotFailure = () => {
   console.log('deleteParkingSpotFailure')
+  alerts.showUpdateAlert($('#delete-failure-alert-id'))
 }
 
 const editParkingSpotSuccess = (ajaxResponse) => {
@@ -91,6 +97,7 @@ const editParkingSpotSuccess = (ajaxResponse) => {
 
 const editParkingSpotFailure = () => {
   console.log('editParkingSpotFailure')
+  alerts.showUpdateAlert($('#update-failure-alert-id'))
 }
 
 module.exports = {

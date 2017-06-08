@@ -4,6 +4,7 @@ const store = require('../store')
 const icons = require('./icons')
 const style = require('./mapStyles')
 const iconHandlers = require('./iconHandlers')
+const alerts = require('./helpers/showAlerts')
 // const iconHandlers = require('./iconHandlers')
 
 const GoogleMapsLoader = require('google-maps')
@@ -33,6 +34,8 @@ const mapApiCall = function () {
         const icon = icons.userIcon()
         const userIcon = mapFunctions.placeMarker({lat: 42.3601, lng: -71.0589}, map, icon, true)
         store.userIcon = userIcon
+
+        alerts.showUpdateAlert($('#no-geo-alert-id'))
         // iconHandlers.attachMarkerHandlers(userIcon)
       })
   })
