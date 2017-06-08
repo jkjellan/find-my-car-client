@@ -62,6 +62,9 @@ const renderCurrentParkingLocation = function (ajaxResponse) {
     const currentCar = mapFunctions.placeMarker(latLng, store.map, icon, false, parkingSpotsSorted[length - 1].id, parkingSpotsSorted[length - 1].created_at, parkingSpotsSorted[length - 1].note, true)
     store.currentMarker = currentCar
     iconHandlers.currentCarIconHandlers(store.currentMarker)
+    google.maps.event.trigger(store.currentMarker, 'click')
+  } else {
+    remove.removeCurrentCarIcon()
   }
 }
 

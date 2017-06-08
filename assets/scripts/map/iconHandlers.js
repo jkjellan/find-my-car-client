@@ -32,6 +32,7 @@ const pastCarsIconHandlers = function (markerArray) {
         console.log('pastCarIcons[i] are', pastCarIcons[i])
         store.markerIdToDelete = pastCarIcons[i].id
         store.markerIdToEdit = pastCarIcons[i].id
+        store.priorAnimationMarker = pastCarIcons[i]
         // $('#myDeleteModal').modal('toggle')
         $('.bottom-drawer .content-wrapper').show('slow')
         console.log('date-time and note are', pastCarIcons[i].time, pastCarIcons[i].note)
@@ -55,7 +56,7 @@ const currentCarIconHandlers = function (marker) {
     console.log('currentCarIcon is', currentCarIcon)
     store.markerIdToDelete = currentCarIcon.id
     store.markerIdToEdit = currentCarIcon.id
-
+    store.priorAnimationMarker = currentCarIcon
     $('.bottom-drawer .content-wrapper').show('slow')
     console.log('date-time and note are', currentCarIcon.time, currentCarIcon.note)
     $('#date').html(currentCarIcon.date)

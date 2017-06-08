@@ -1,6 +1,7 @@
 'use strict'
 
 const helpers = require('./helpers/parseTime.js')
+const store = require('../store')
 
 const initializeMapWithGeo = function (position, styledMapType) {
   console.log('initializeMapWithGeo, position is', position)
@@ -49,13 +50,52 @@ const placeMarker = function (position, map, icon, dragBool, id, time, note, cur
     latLng = position
   }
 
-  const marker = new google.maps.Marker({
-    position: latLng,
-    draggable: dragBool,
-    title: 'Last parking spot',
-    icon: icon
-    // animation: google.maps.Animation.BOUNCE
-  })
+  const maxZindex = google.maps.Marker.MAX_ZINDEX
+  const maxPlusOne = maxZindex + 1
+
+  let marker = undefined
+
+  if (dragBool) {
+    marker = new google.maps.Marker({
+      position: latLng,
+      draggable: dragBool,
+      title: 'parking location',
+      icon: icon,
+      zIndex: maxPlusOne
+      // animation: google.maps.Animation.DROP
+    })
+  } else {
+    marker = new google.maps.Marker({
+      position: latLng,
+      draggable: dragBool,
+      title: 'parking location',
+      icon: icon
+      // animation: google.maps.Animation.DROP
+    })
+  }
+
+  console.log('dragBool is', dragBool)
+  // dragBool is a proxy for whether the icon is the user Icon is not
+  // true means it's the userIcon, and I do not want to attach animation
+  // to the userIcon
+  console.log('just prior to add animation if statement')
+  if (!dragBool) {
+    console.log('inside if condition')
+    marker.addListener('click', toggleBounce)
+  }
+
+  function toggleBounce () {
+    console.log('in toggleBound')
+    console.log('marker animation is', marker.getAnimation())
+    if (marker.getAnimation() !== null && marker.getAnimation() !== undefined) {
+      console.log('there is already an animation active')
+    } else {
+      marker.setAnimation(google.maps.Animation.BOUNCE)
+      if (store.priorAnimationMarker) {
+        store.priorAnimationMarker.setAnimation(null)
+      }
+    }
+  }
 
   let formattedDate = null
   let formattedTime = null
