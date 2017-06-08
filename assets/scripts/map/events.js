@@ -62,7 +62,7 @@ const addHandlers = () => {
   $('#parking-spot').on('submit', onNewParkingSpot)
   $('#parking-spot-delete').on('click', onDeleteParkingSpot)
   // $('#parking-spot-edit').on('submit', onEditParkingSpot)
-  $('#note').on('blur', onEditParkingSpot)
+  $('#save-note').on('click', onEditParkingSpot)
 }
 
 module.exports = {
