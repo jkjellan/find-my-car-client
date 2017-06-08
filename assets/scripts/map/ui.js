@@ -4,6 +4,7 @@ const render = require('./render')
 // const iconHandlers = require('./iconHandlers')
 // const mapEvents = require('./events')
 const updateDrawer = require('./updateDrawer')
+const alerts = require('./helpers/showAlerts')
 
 const newParkingSpotSuccess = (ajaxResponse) => {
   // $('#myParkingModal').modal('toggle')
@@ -84,6 +85,7 @@ const editParkingSpotSuccess = (ajaxResponse) => {
   store.updateDrawer = false
   console.log('editParkingSpotSuccess, ajax is', ajaxResponse)
   mapEvents.onGetParkingSpots()
+  alerts.showUpdateAlert($('#update-success-alert-id'))
 }
 
 const editParkingSpotFailure = () => {
