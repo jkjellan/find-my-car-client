@@ -1,4 +1,4 @@
-![Find My Car Application](http://i.imgur.com/aeRlfqs.png)]
+![Find My Car Application](http://i.imgur.com/yk8kcaC.png)]
 
 ## Find-My-Car-Client URL
 
