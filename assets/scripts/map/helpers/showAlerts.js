@@ -1,6 +1,7 @@
 'use strict'
 
 const hideAlerts = () => {
+  $('#sign-out-success-alert-id').hide()
   $('#sign-out-failure-alert-id').hide()
   $('#new-parking-spot-failure-alert-id').hide()
   $('#get-parking-spots-failure-alert-id').hide()

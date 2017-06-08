@@ -38,6 +38,7 @@ const signInFailure = (error) => {
 }
 
 const signOutSuccess = () => {
+  alerts.showUpdateAlert($('#sign-out-success-alert-id'))
   // console.log('sign out success, nothing was returned')
   // console.log('store is: ', store)
   store.user = null

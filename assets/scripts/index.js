@@ -34,6 +34,7 @@ $(() => {
   $('#sign-in-modal').show()
   $('#checkoutBtn').hide()
 
+  $('#sign-out-success-alert-id').hide()
   $('#sign-out-failure-alert-id').hide()
   $('#new-parking-spot-failure-alert-id').hide()
   $('#get-parking-spots-failure-alert-id').hide()
