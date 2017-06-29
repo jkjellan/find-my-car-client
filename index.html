@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Find My Car</title>
+      <script src="https://use.fontawesome.com/1861878655.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags unless you know what you are doing -->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags unless you know what you are doing -->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <div class="map" id="map">Loading Map...</div>
+      <h1 class="show-lat-lng" id="current"></h1>
+
+      <div class="bottom-drawer">
+        <div class="close-bottom-drawer"><span class="glyphicon, glyphicon glyphicon-chevron-down"></span></div>
+        <div class="content-wrapper">
+          <div class="content">
+            <div id="date" class="date"></div>
+            <div id="time" class="time"></div>
+            <div class="note-header">Note</div>
+            <div id="note" class="note" contenteditable="true"></div>
+            <button id="save-note" class="save">Save</button>
+            <div id="removeRecord" class="removeRecord">
+              <button id="parking-spot-delete" class="parking-spot-delete">Delete Record</button>
+            </div>
+            <!-- <button id="update-note" class="update-note">Update Note</button> -->
+          </div>
+        </div>
+      </div>
+
+
+      <!-- START save parking spot MODAL-->
+      <div class="modal fade" id="myParkingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Save Parking Location</h4>
+                  </div>
+                  <div class="modal-body">
+                     <form id="parking-spot">
+                       <div class="form-group">
+                        <label for="name">Note</label>
+                        <input type="text" name="parking_spot[note]" class="form-control" placeholder="Note about parking spot">
+                       </div>
+                       <input type="submit" class="btn btn-default" name="submit" value="Save">
+                       <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+                       <h5 class="form-error" id="tempParkingError"></h5>
+                   </form>
+                  </div>
+            </div>
+          </div>
+        </div>
+        <!-- END save parking spot MODAL -->
+
+
+
+
+        <!-- START delete parking spot MODAL-->
+        <div class="modal fade" id="myDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Do you wish to delete this parking record?</h4>
+                    </div>
+                    <div class="modal-body">
+                       <button id="" type="submit" class="btn btn-default" data-dismiss="modal">Yes</button>
+                       <button type="submit" class="btn btn-default" data-dismiss="modal">No</button>
+                    </div>
+              </div>
+            </div>
+          </div>
+          <!-- END delete parking spot MODAL -->
+
+
+
+
+          <!-- START edit parking spot MODAL-->
+          <div class="modal fade" id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit the note on this parking spot</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form id="parking-spot-edit">
+                          <div class="form-group">
+                           <label for="name">Note</label>
+                           <input type="text" name="parking_spot[note]" class="form-control" placeholder="Edit your note about parking spot">
+                          </div>
+                          <input type="submit" class="btn btn-default" name="submit" value="Save">
+                          <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <h5 class="form-error" id="tempParkingError"></h5>
+                      </form>
+                      </div>
+                </div>
+              </div>
+            </div>
+            <!-- END edit parking spot MODAL -->
+
+
+
+
+      <nav class="my-navbar navbar navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <div class="my-company-name" href="#">Find My Car</div>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li data-toggle="dropdown" class="dropdown-toggle"><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+            <ul class="dropdown-menu">
+              <li id="sign-up-modal"><a href="#">Sign-up</a></li>
+              <li id="sign-in-modal"><a href="#">Sign-in</a></li>
+              <li id="chng-pw-modal"><a href="#">Change-Password</a></li>
+              <li id="sign-out-modal"><a href="#">Sign-out</a></li>
+            </ul>
+          </ul>
+          <span id="email-display" class="nav navbar-nav navbar-right email-display"></span>
+        </div>
+
+        <div id="no-geo-alert-id" class="alert alert-danger alert-styling">Geo-location failed to load. Please refresh page.</div>
+
+        <div id="sign-out-success-alert-id" class="alert alert-success alert-styling">Sign-out successful!</div>
+        <div id="sign-out-failure-alert-id" class="alert alert-danger alert-styling">Connection lost. Please refresh page.</div>
+        <div id="new-parking-spot-failure-alert-id" class="alert alert-danger alert-styling">Failed to save parking location. Please try again.</div>
+        <div id="get-parking-spots-failure-alert-id" class="alert alert-danger alert-styling">Failed to load parking locations. Please try again.</div>
+        <div id="get-parking-spot-failure-alert-id" class="alert alert-danger alert-styling">Failed to load current parking location. Please try again.</div>
+
+        <div id="update-success-alert-id" class="alert alert-success alert-styling">Note Updated!</div>
+        <div id="delete-success-alert-id" class="alert alert-success alert-styling">Parking Record Deleted!</div>
+        <div id="update-failure-alert-id" class="alert alert-danger alert-styling">Note failed to update. Try again.</div>
+        <div id="delete-failure-alert-id" class="alert alert-danger alert-styling">Parking record failed to delete. Try again.</div>
+        <div id="sign-in-alert-id" class="alert alert-danger alert-styling">SIGN IN to save parking location</div>
+      </nav>
+
+
+
+      <!-- START Sign-up-modal -->
+<div class="modal fade" id="mySignUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Sign-up</h4>
+            </div>
+            <div class="modal-body">
+               <form id="sign-up">
+                 <div class="form-group">
+                  <label for="name">Email</label>
+                  <input type="text" name="credentials[email]" class="form-control" placeholder="Email">
+                  <label for="name">Password</label>
+                  <input type="password" name="credentials[password]" class="form-control" placeholder="Password">
+                  <label for="name">Password Confirmation</label>
+                  <input type="password" name="credentials[password_confirmation]" class="form-control" placeholder="Confirm Password">
+                 </div>
+                 <button type="submit" class="sign-up-spinner btn btn-default" name="submit" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait...Server Spinning Up">Sign up!</button>
+                 <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+                 <h5 class="form-error" id="tempSignUpError"></h5>
+             </form>
+            </div>
+      </div>
+    </div>
+  </div>
+  <!-- END Sign-up-modal -->
+
+  <!-- START Sign-in-modal -->
+  <div class="modal fade" id="mySignInModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Sign-in</h4>
+              </div>
+              <div class="modal-body">
+                 <form id="sign-in">
+                   <div class="form-group">
+                    <label for="name">Email</label>
+                    <input type="text" name="credentials[email]" class="form-control" placeholder="Email">
+                    <label for="name">Password</label>
+                    <input type="password" name="credentials[password]" class="form-control" placeholder="Password">
+                   </div>
+                   <button type="submit" class="sign-in-spinner btn btn-default" name="submit" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait...Server Spinning Up">Sign in!</button>
+                   <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+                   <h5 class="form-error" id="tempSignInError"></h5>
+               </form>
+              </div>
+        </div>
+      </div>
+    </div>
+    <!-- END Sign-in-modal -->
+
+    <!-- START Change-password-modal -->
+    <div class="modal fade" id="myPwChangeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Change Password</h4>
+                </div>
+                <div class="modal-body">
+                   <form id="change-password">
+                     <div class="form-group">
+                      <label for="name">Old Password</label>
+                      <input type="password" name="passwords[old]" class="form-control" placeholder="Old Password">
+                      <label for="name">New Password</label>
+                      <input type="password" name="passwords[new]" class="form-control" placeholder="New Password">
+                     </div>
+                     <input type="submit" class="btn btn-default" name="submit" value="Change Password!">
+                     <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+                     <h5 class="form-error" id="tempChangePasswordError"></h5>
+                 </form>
+                </div>
+          </div>
+        </div>
+      </div>
+      <!-- END Change-password-modal -->
+
+
+
+
+    </body>
+</html>
