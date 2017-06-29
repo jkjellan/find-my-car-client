@@ -8,18 +8,21 @@ const iconHandlers = require('../map/iconHandlers')
 const alerts = require('../map/helpers/showAlerts')
 
 const signUpSuccess = (ajaxResponse) => {
+  $('.sign-up-spinner').button('reset')
   // // console.log('sign up Success')
   // console.log('sign-up success, user:', ajaxResponse.user)
   menu.signUpSuccess()
 }
 
 const signUpFailure = (error) => {
+  $('.sign-up-spinner').button('reset')
   // // console.log('sign up error')
   // console.error(error)
   menu.signUpError()
 }
 
 const signInSuccess = (ajaxResponse) => {
+  $('.sign-in-spinner').button('reset')
   // console.log('sign in success', ajaxResponse.user)
   store.user = ajaxResponse.user
   // super hacky way to prevent bottom drawer from updating in certain cirumstances
@@ -32,6 +35,7 @@ const signInSuccess = (ajaxResponse) => {
 }
 
 const signInFailure = (error) => {
+  $('.sign-in-spinner').button('reset')
   // // console.log('sign in failure')
   // console.error(error)
   menu.signInError()

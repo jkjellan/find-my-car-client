@@ -2,6 +2,7 @@
 <html>
     <head>
       <title>Find My Car</title>
+      <script src="https://use.fontawesome.com/1861878655.js"></script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags unless you know what you are doing -->
@@ -159,7 +160,7 @@
                   <label for="name">Password Confirmation</label>
                   <input type="password" name="credentials[password_confirmation]" class="form-control" placeholder="Confirm Password">
                  </div>
-                 <input type="submit" class="btn btn-default" name="submit" value="Sign up!">
+                 <button type="submit" class="sign-up-spinner btn btn-default" name="submit" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait...Server Spinning Up">Sign up!</button>
                  <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
                  <h5 class="form-error" id="tempSignUpError"></h5>
              </form>
@@ -185,7 +186,7 @@
                     <label for="name">Password</label>
                     <input type="password" name="credentials[password]" class="form-control" placeholder="Password">
                    </div>
-                   <input type="submit" class="btn btn-default" name="submit" value="Sign in!">
+                   <button type="submit" class="sign-in-spinner btn btn-default" name="submit" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait...Server Spinning Up">Sign in!</button>
                    <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
                    <h5 class="form-error" id="tempSignInError"></h5>
                </form>

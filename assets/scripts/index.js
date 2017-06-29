@@ -15,6 +15,16 @@ $(() => {
 })
 
 $(() => {
+  $('.sign-up-spinner').on('click', function () {
+    // console.log('submitted sign up')
+    $('.sign-up-spinner').button('loading')
+  })
+
+  $('.sign-in-spinner').on('click', function () {
+    // console.log('submitted sign in')
+    $('.sign-in-spinner').button('loading')
+  })
+
   $('.close-bottom-drawer').on('click', function () {
     $('.bottom-drawer .content-wrapper').hide('slow')
   })
