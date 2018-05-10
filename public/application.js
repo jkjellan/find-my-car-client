@@ -274,6 +274,7 @@ webpackJsonp([0],[
 	  // console.log('initializeMapWithGeo, position is', position)
 	  var latLng = { lat: position.coords.latitude, lng: position.coords.longitude };
 	  var map = new google.maps.Map(document.getElementById('map'), {
+	    keyboardShortcuts: false,
 	    zoom: 17,
 	    center: latLng,
 	    streetViewControl: false,
