@@ -7,6 +7,7 @@ const initializeMapWithGeo = function (position, styledMapType) {
   // console.log('initializeMapWithGeo, position is', position)
   const latLng = {lat: position.coords.latitude, lng: position.coords.longitude}
   const map = new google.maps.Map(document.getElementById('map'), {
+    keyboardShortcuts: false,
     zoom: 17,
     center: latLng,
     streetViewControl: false,
